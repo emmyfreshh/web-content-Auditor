@@ -44,12 +44,38 @@ The agent does not run the same checks in the same order every time:
 - If uncertainty remains, it chooses the next tool that most reduces uncertainty (often sandbox or pattern checks).
 - It stops when evidence is decisive and at least two tools have been used.
 
-## Run the demo
+## To test this on any site you want 
+
+import requests
+from auditor_agent import ContentAuditorAgent
+
+url = "https://example.com" (Url of the site you will like to check)
+
+html = requests.get(url, timeout=10).text
+
+agent = ContentAuditorAgent()
+
+result = agent.audit(
+    content=html,
+    content_id="site-check-1",
+    source_url=url
+)
+
+print(result.decision)
+print(result.risk_score)
+print(result.final_rationale)
+print(result.to_dict())
+
+## Future Improvements
+Future improvements that will be considered for this system includes; an ML model or NLP model instead of the semantic analyzer, a database of known bad domains and more risk categories.
+
+
+## Run the demo in the tests folder
 
 From repository root:
 
 ```bash
-python3 auditor_agent.py
+python auditor_agent.py
 ```
 
 This prints JSON decisions for three examples, each including:
@@ -62,12 +88,12 @@ This prints JSON decisions for three examples, each including:
 ## Run tests
 
 ```bash
-python3 -m unittest discover -s tests -p 'test_*.py' -v
+python -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-## 3-minute demo script (suggested)
+## demo script 
 
-1. Run `python3 auditor_agent.py`.
+1. Run `python auditor_agent.py`.
 2. Show `benign-doc-page` being accepted with low weighted risk.
 3. Show `malicious-injection` being rejected with high-risk corroborated evidence.
 4. Show `ambiguous-analytics-snippet` and explain uncertainty handling + additional checks.
