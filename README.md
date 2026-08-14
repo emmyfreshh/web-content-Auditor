@@ -62,7 +62,7 @@ This prints JSON decisions for three examples, each including:
 ## Run tests
 
 ```bash
-python3 -m unittest -v
+python3 -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
 ## 3-minute demo script (suggested)
