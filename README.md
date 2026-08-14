@@ -45,6 +45,7 @@ The agent does not run the same checks in the same order every time:
 - It stops when evidence is decisive and at least two tools have been used.
 
 ## How to run this application
+install the requirements then run this at the project root
 ```bash
 streamlit run streamlit_app.py
 ```
@@ -53,7 +54,7 @@ streamlit run streamlit_app.py
 Future improvements that will be considered for this system includes; an ML model or NLP model instead of the semantic analyzer, a database of known bad domains and more risk categories.
 
 
-## Run the demo in the tests folder
+## Run the demo 
 
 From repository root:
 
