@@ -44,27 +44,8 @@ The agent does not run the same checks in the same order every time:
 - If uncertainty remains, it chooses the next tool that most reduces uncertainty (often sandbox or pattern checks).
 - It stops when evidence is decisive and at least two tools have been used.
 
-## To test this on any site you want 
-
-import requests
-from auditor_agent import ContentAuditorAgent
-
-url = "https://example.com" (Url of the site you will like to check)
-
-html = requests.get(url, timeout=10).text
-
-agent = ContentAuditorAgent()
-
-result = agent.audit(
-    content=html,
-    content_id="site-check-1",
-    source_url=url
-)
-
-print(result.decision)
-print(result.risk_score)
-print(result.final_rationale)
-print(result.to_dict())
+## How to run this application
+streamlit run streamlit_app.py
 
 ## Future Improvements
 Future improvements that will be considered for this system includes; an ML model or NLP model instead of the semantic analyzer, a database of known bad domains and more risk categories.
